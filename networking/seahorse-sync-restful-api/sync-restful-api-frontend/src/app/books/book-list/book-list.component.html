@@ -7,8 +7,7 @@
 </ul>
 
 <form (submit)="addBook()">
-    <input [(ngModel)]="newBook.title" placeholder="Title" required />
-    <input [(ngModel)]="newBook.author" placeholder="Author" required />
+    <input [(ngModel)]="newBook.title" name="Title" placeholder="Title" required />
+    <input [(ngModel)]="newBook.author" name="Author" placeholder="Author" required />
     <button type="submit">Add Book</button>
 </form>
-
