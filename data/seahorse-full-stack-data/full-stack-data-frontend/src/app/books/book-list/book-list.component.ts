@@ -10,7 +10,7 @@ import { Book } from '../book';
 })
 export class BookListComponent implements OnInit {
     books: Book[] = [];
-    newBook: Omit<Book, 'id'> = { title: '', author: '' };
+    newBook: Omit<Book, '_id'> = { title: '', author: '' };
 
     constructor(private bookService: BookService) {}
 
@@ -29,7 +29,7 @@ export class BookListComponent implements OnInit {
         });
     }
 
-    deleteBook(id: number): void {
-        this.bookService.deleteBook(id).subscribe(() => this.loadBooks());
+    deleteBook(id: string): void {
+      this.bookService.deleteBook(id).subscribe(() => this.loadBooks());
     }
 }
