@@ -55,10 +55,7 @@ __decorate([
     (0, common_1.Post)(),
     (0, swagger_1.ApiResponse)({ status: 201, description: 'User created.', type: book_entity_1.Book }),
     (0, swagger_1.ApiExtraModels)(book_entity_1.Book),
-    (0, swagger_1.ApiBody)({
-        description: 'The user to create',
-        type: book_entity_1.Book,
-    }),
+    (0, swagger_1.ApiBody)({ description: 'The user to create', type: book_entity_1.Book, }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
