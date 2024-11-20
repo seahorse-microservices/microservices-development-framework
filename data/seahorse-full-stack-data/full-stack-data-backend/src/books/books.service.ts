@@ -1,23 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { Book } from './book.entity';
+
+import { Book } from './book.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class BooksService {
     private books: Book[] = [];
-    private idCounter = 1;
+    
 
-    findAll(): Book[] {
-        return this.books;
+    constructor(
+        @InjectModel(Book.name) private bookModel: Model<Book>,
+      ) {}
+
+
+    create(book: Omit<Book, 'id'>): Promise<Book> {
+        const newBook = { ...book };
+        const createdBook = new this.bookModel(newBook);
+        return createdBook.save();
     }
+
+    findAll(): Promise<Book[]>{
+        //return this.books;
+        return this.bookModel.find().exec();
+    }
+
+    //todo
 
     findOne(id: number): Book {
         return this.books.find((book) => book.id === id);
-    }
-
-    create(book: Omit<Book, 'id'>): Book {
-        const newBook = { ...book, id: this.idCounter++ };
-        this.books.push(newBook);
-        return newBook;
     }
 
     update(id: number, bookData: Partial<Book>): Book {
