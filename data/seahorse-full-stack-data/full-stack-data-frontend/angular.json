@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sync-restful-api-frontend": {
+    "full-stack-data-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sync-restful-api-frontend",
+            "outputPath": "dist/full-stack-data-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "sync-restful-api-frontend:build:production"
+              "buildTarget": "full-stack-data-frontend:build:production"
             },
             "development": {
-              "buildTarget": "sync-restful-api-frontend:build:development"
+              "buildTarget": "full-stack-data-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"

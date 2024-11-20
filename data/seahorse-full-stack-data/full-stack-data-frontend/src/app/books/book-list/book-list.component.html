@@ -1,9 +1,11 @@
 <h1>Book List</h1>
 <ul>
-    <li *ngFor="let book of books">
-        {{ book.title }} by {{ book.author }}
-        <button (click)="deleteBook(book.id)">Delete</button>
-    </li>
+	@for (book of books; track $index) {
+		<li>
+			<app-book [title]="book.title" [author]="book.author"></app-book>
+      <button (click)="deleteBook(book.id)">Delete</button>
+		</li>
+	}
 </ul>
 
 <form (submit)="addBook()">

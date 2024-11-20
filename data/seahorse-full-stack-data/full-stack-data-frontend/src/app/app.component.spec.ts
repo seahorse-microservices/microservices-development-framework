@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'sync-restful-api-frontend'`, () => {
+  it(`should have as title 'full-stack-data-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('sync-restful-api-frontend');
+    expect(app.title).toEqual('full-stack-data-frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, sync-restful-api-frontend');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, full-stack-data-frontend');
   });
 });
