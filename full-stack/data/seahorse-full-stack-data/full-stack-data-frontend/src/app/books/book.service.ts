@@ -16,19 +16,19 @@ export class BookService {
         return this.http.get<Book[]>(this.apiUrl);
     }
 
-    getBook(id: number): Observable<Book> {
+    getBook(id: string): Observable<Book> {
         return this.http.get<Book>(`${this.apiUrl}/${id}`);
     }
 
-    addBook(book: Omit<Book, 'id'>): Observable<Book> {
+    addBook(book: Omit<Book, '_id'>): Observable<Book> {
         return this.http.post<Book>(this.apiUrl, book);
     }
 
-    updateBook(id: number, bookData: Partial<Book>): Observable<Book> {
+    updateBook(id: string, bookData: Partial<Book>): Observable<Book> {
         return this.http.put<Book>(`${this.apiUrl}/${id}`, bookData);
     }
 
-    deleteBook(id: number): Observable<void> {
+    deleteBook(id: string) {
         return this.http.delete<void>(`${this.apiUrl}/${id}`);
     }
 }

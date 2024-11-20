@@ -11,6 +11,6 @@ export class BookComponent {
 	@Output() onDeleteBook: EventEmitter<Book> = new EventEmitter<Book>();
 
 	constructor() {
-		this.book = {id: 1, title: '', author: ''};
+		this.book = {_id: "1", title: '', author: ''};
 	}
 }
