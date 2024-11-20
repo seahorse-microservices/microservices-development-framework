@@ -12,9 +12,6 @@ export type AccountModelHydratedDocument = HydratedDocument<Book>;
 export class Book {
     @ApiProperty()
     @Prop()
-    id: number;
-    @ApiProperty()
-    @Prop()
     title: string;
     @ApiProperty()
     @Prop()

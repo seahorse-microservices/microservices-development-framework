@@ -8,6 +8,16 @@ import { ApiBody, ApiExtraModels, ApiResponse } from '@nestjs/swagger';
 export class BooksController {
     constructor(private readonly booksService: BooksService) {}
 
+
+
+    @Post()
+    @ApiResponse({ status: 201, description: 'User created.', type: Book})
+    @ApiExtraModels(Book)
+    @ApiBody({description: 'The user to create', type: Book,})
+    async create(@Body() book: Book): Promise<Book> {
+        return this.booksService.create(book);
+    }
+
     @Get()
     findAll(): Promise<Book[]> {
         return this.booksService.findAll();
@@ -15,35 +25,26 @@ export class BooksController {
 
 
 
-    @Post()
-    @ApiResponse({ status: 201, description: 'User created.', type: Book})
-    @ApiExtraModels(Book)
-    @ApiBody({description: 'The user to create', type: Book,})
-    async create(@Body() book: Omit<Book, 'id'>): Promise<Book> {
-        return this.booksService.create(book);
+   
+
+    @Delete(':id')
+    delete(@Param('id') id: string): Promise<boolean> {
+        return this.booksService.delete(id);
     }
 
 
 
-        //todo
-
-
-
-
     @Get(':id')
-    findOne(@Param('id') id: string): Book {
-        return this.booksService.findOne(Number(id));
+    findOne(@Param('id') id: string): Promise<Book> {
+        return this.booksService.findOne(id);
     }
 
     
 
     @Put(':id')
-    update(@Param('id') id: string, @Body() bookData: Partial<Book>): Book {
-        return this.booksService.update(Number(id), bookData);
+    update(@Param('id') id: string, @Body() bookData: Partial<Book>): Promise<Book> {
+        return this.booksService.update(id, bookData);
     }
 
-    @Delete(':id')
-    delete(@Param('id') id: string): boolean {
-        return this.booksService.delete(Number(id));
-    }
+  
 }
