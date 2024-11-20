@@ -1,9 +1,8 @@
 <h1>Book List</h1>
 <ul>
-	@for (book of books; track $index) {
+	@for (bookFromList of books; track $index) {
 		<li>
-			<app-book [title]="book.title" [author]="book.author"></app-book>
-      <button (click)="deleteBook(book.id)">Delete</button>
+			<app-book [book]="bookFromList" (onDeleteBook)="deleteBook($event.id)"></app-book>
 		</li>
 	}
 </ul>

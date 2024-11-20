@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Book } from '../../book';
 
 @Component({
   selector: 'app-book',
@@ -6,11 +7,10 @@ import { Component, Input } from '@angular/core';
   styleUrl: './book.component.css'
 })
 export class BookComponent {
-	@Input() title: string;
-	@Input() author: string;
+	@Input() book: Book;
+	@Output() onDeleteBook = new EventEmitter<Book>();
 
 	constructor() {
-		this.title = '';
-		this.author = '';
+		this.book = {id: 1, title: '', author: ''};
 	}
 }
