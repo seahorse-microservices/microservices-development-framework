@@ -14,6 +14,7 @@ export class AppComponent {
   title = 'local-storage';
   token: string | undefined;
   constructor(@Inject(DOCUMENT) private document: Document) {
+    
     const localStorage = document.defaultView?.localStorage;
 
     if (localStorage) {
