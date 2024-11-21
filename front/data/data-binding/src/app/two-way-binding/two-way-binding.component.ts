@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SizerComponent } from '../sizer/sizer.component';
+import { SizerComponent } from './sizer/sizer.component';
 
 @Component({
   selector: 'app-two-way-binding',

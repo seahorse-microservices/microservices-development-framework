@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
       <hr />
       <p>Change the input and see the differences!!!</p>
       <hr />
-      <div>
+      <div (keyup)="(0)">
         <div>
           <h2>HTML Attribute Initializes to "{{ inputValue }}"</h2>
           <label for="html-attr">

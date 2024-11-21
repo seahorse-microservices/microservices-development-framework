@@ -1,32 +1,25 @@
 import {ComponentFixture, TestBed, waitForAsync} from "@angular/core/testing";
 import { TwoWayBindingComponent } from "./two-way-binding.component";
-import { SizerComponent } from "../sizer/sizer.component";
+import { SizerComponent } from "./sizer/sizer.component";
+import { fireEvent, render, screen } from '@testing-library/angular';
 import { By } from "@angular/platform-browser";
 
 describe("TwoWayBindingComponent", () => {
-  let twoWayBindingFixt: ComponentFixture<TwoWayBindingComponent>;
-  let twoWayBindingComp: TwoWayBindingComponent;
   
-	beforeEach(waitForAsync(() => {
-		TestBed.configureTestingModule({imports: [TwoWayBindingComponent]}).compileComponents();
-  }));
-
-	beforeEach(() => {
-    twoWayBindingFixt = TestBed.createComponent(TwoWayBindingComponent);
-    twoWayBindingComp = twoWayBindingFixt.componentInstance;
-		twoWayBindingFixt.detectChanges();
-  });
-
-  it("should create", () => {
-    expect(twoWayBindingComp).toBeDefined();
+  
+	beforeEach(async() => {
+		await render(TwoWayBindingComponent, {
+			componentProperties: {
+				fontSizePx: 16
+			}
+		});
   });
 
 	it("the font size should be two-way binded", () => {
-		const sizerElement = twoWayBindingFixt.debugElement.query(By.directive(SizerComponent));
-		const sizerComp = sizerElement.componentInstance as SizerComponent;
-		const btnDecrement = sizerElement.nativeElement.querySelector("button[title='smaller']") as HTMLButtonElement;
-		const btnIncrement = sizerElement.nativeElement.querySelector("button[title='bigger']") as HTMLButtonElement;
-
+		const sizersResizableParagraph = screen.getByText("FontSize: 16px");
+		const decrementFontSizeButton = screen.getByRole("button", {name: "+"});
+		const incrementFontSizeButton = screen.getByRole("button", {name: "-"});
+		
 		expect(sizerComp.size)
 		.withContext("initial sizerComp's size compared to twoWayBindingComp's one")
 		.toBe(twoWayBindingComp.fontSizePx);

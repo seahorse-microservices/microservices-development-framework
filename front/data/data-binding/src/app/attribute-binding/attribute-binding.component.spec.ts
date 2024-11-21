@@ -1,51 +1,29 @@
-import {ComponentFixture, TestBed, fakeAsync, tick, waitForAsync} 
-from "@angular/core/testing";
 import { AttributeBindingComponent } from "./attribute-binding.component";
+import { fireEvent, render, screen } from '@testing-library/angular';
 
 describe("AttributeBindingComponent", () => {
-  let attributeBindingComponent: AttributeBindingComponent;
-  let componentFixture: ComponentFixture<AttributeBindingComponent>;
-	let hTMLInputElement: HTMLInputElement;
+	let htmlInputElement: HTMLInputElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({imports: [AttributeBindingComponent]})
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    componentFixture = TestBed.createComponent(AttributeBindingComponent);
-    attributeBindingComponent = componentFixture.componentInstance;
-		hTMLInputElement = componentFixture.nativeElement.querySelector("#html-attr");
-    componentFixture.detectChanges();
+  beforeEach(async () => {
+		await render(AttributeBindingComponent, {
+			componentProperties: {
+				inputValue: 'miguel'
+			}
+		});
+		htmlInputElement = screen.getByRole("textbox");
   });
 
-  it("should create", () => {
-    expect(attributeBindingComponent).toBeDefined();
+  it("htmlInputElement's value attribute should be equal to inputValue", () => {
+		expect(htmlInputElement.getAttribute("value")).toBe('miguel');
   });
 
-  it("hTMLInputElement's value attribute should be equal to inputValue", () => {
-		expect(hTMLInputElement.getAttribute("value"))
-		.withContext("Expected hTMLInputElement's initial value be equal to inputValue")
-		.toBe(attributeBindingComponent.inputValue);
-  });
+  it("after modifying input, we should see <p id=attribute>'s text unchanged and <p id=property>'s text modified", () => {
+		const ATTRIBUTE_PARAGRAPH = screen.getByText('HTML attribute value: miguel (static)');
+		const PROPERTY_PARAGRAPH = screen.getByText('DOM property value: miguel');
 
-  it("after modify input, we should see <p id=attribute>'s text unchanged and <p id=property>'s text modified", () => {
-		const PARAGRAPHS = componentFixture.nativeElement.querySelectorAll("p");
-		const P1 = PARAGRAPHS[1];
-		const P2 = PARAGRAPHS[2];
-		
-		hTMLInputElement.value = "Another value";
-		hTMLInputElement.dispatchEvent(new Event('input'));
-		componentFixture.detectChanges();
-  
-		expect(P1.textContent)
-		.withContext("The first paragraph's text changed")
-		.toEqual(`HTML attribute value: ${hTMLInputElement.getAttribute("value")} (static)`);
-  
-		expect(P2.textContent)
-		.withContext("The second paragraph's text didn't change")
-		.not.toEqual(`DOM property value: ${attributeBindingComponent.inputValue}`);
-  });
+		fireEvent['input'](htmlInputElement, {target: {value: "Another value"}});
 
-  
+		expect(ATTRIBUTE_PARAGRAPH.textContent).toEqual(`HTML attribute value: miguel (static)`);
+		expect(PROPERTY_PARAGRAPH.textContent).toEqual(`DOM property value: Another value`);
+  });
 });

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { RemoveTodo } from '../todo.state';
+import { RemoveTodo, TodoState } from '../todo.state';
 
 @Component({
   selector: 'todo-list',
@@ -19,7 +19,7 @@ import { RemoveTodo } from '../todo.state';
     `
 })
 export class TodoListComponent {
-  @Select((state: { todo: { todos: any; }; }) => state.todo.todos) todos$!: Observable<string[]>;
+	todos$: Observable<string[]> = inject(Store).select(TodoState.getTodos);
 
   constructor(private store: Store) {}
 
