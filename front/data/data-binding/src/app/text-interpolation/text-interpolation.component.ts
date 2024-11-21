@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <div>
+    <h1>Text Interpolation</h1>
       <h3>{{ title }}</h3>
       <input type="text" value="{{ inputValue }}" />
     </div>

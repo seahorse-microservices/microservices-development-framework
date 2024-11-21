@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   template: `
     <div>
       <hr />
+      <h1>Attribute Binding</h1>
       <p>Change the input and see the differences!!!</p>
       <hr />
       <div (keyup)="(0)">

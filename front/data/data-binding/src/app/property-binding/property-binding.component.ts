@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <div>
+      <h1>Property Binding</h1>
       <hr />
 
       <p>Change the input and see the differences!!!</p>

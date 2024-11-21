@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
     <p>Click the buttons!!!</p>
     <hr />
     <div>
-      <p>Event bindings listen to button click events and call the respective methods each time a click occurs.</p>
       <button type="button" (click)="decrement()" title="smaller">-</button>
       <button type="button" (click)="increment()" title="bigger">+</button>
       <p>Value: {{ clickCount }}</p>

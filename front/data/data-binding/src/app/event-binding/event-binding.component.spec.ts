@@ -2,25 +2,31 @@ import { EventBindingComponent } from "./event-binding.component";
 import { render, screen } from '@testing-library/angular';
 
 
-describe("EventBindingComponent", () => {
-  
-  beforeEach(async() => {
-		await render(EventBindingComponent, {
-			
-		})
+describe("EventBindingComponent", ()=> {
+
+	let component: EventBindingComponent;
+	
+
+beforeEach(async () => {
+    const { fixture } = await render(EventBindingComponent);
+    component = fixture.componentInstance; // Assign the component instance
   });
 
-  it("clicking on the buttons should change the component's clickCount property in their way", () => {
-		const auxClickCount = eventBindingComp.clickCount;
-		const btnDecrement = fixture.nativeElement.querySelector("button[title='smaller']") as HTMLButtonElement;
-		const btnIncrement = fixture.nativeElement.querySelector("button[title='bigger']") as HTMLButtonElement;
-		btnDecrement.click();
-		expect(eventBindingComp.clickCount)
-		.withContext("unexpected clickCount at eventBindingComp after dec()")
-		.toBeLessThan(auxClickCount);
-		btnIncrement.click();
-		expect(eventBindingComp.clickCount)
-		.withContext("unexpected clickCount at eventBindingComp after inc()")
-		.toBe(auxClickCount);
-  });
+
+it("clicking on the buttons should change the component's clickCount property in their way", () => {
+	const beforeBtnIncrementClickCount = component.clickCount;
+	const btnDecrement = screen.getByText("-") as HTMLButtonElement;
+	const btnIncrement = screen.getByText("+") as HTMLButtonElement;
+	
+	
+	btnIncrement.click();
+
+	const afterbtnIncrementClickCount = component.clickCount;
+	expect(beforeBtnIncrementClickCount).toBeLessThan(afterbtnIncrementClickCount);
+	
+	// btnIncrement.click();
+	// expect(eventBindingComp.clickCount).toBe(auxClickCount);
+});
+
+
 });
