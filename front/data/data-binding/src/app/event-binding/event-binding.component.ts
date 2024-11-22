@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-event-binding',
   standalone: true,
   template: `
+  <h1>Event Binding</h1>
     <hr />
     <p>Click the buttons!!!</p>
     <hr />

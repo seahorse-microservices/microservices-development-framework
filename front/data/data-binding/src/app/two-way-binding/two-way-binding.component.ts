@@ -8,6 +8,7 @@ import { SizerComponent } from './sizer/sizer.component';
   imports: [SizerComponent],
   template: `
     <div>
+      <h1>Two-way binding</h1>
       <h5>ParentComponent</h5>
       <div [style.font-size.px]="fontSizePx">Resizable Text</div>
       <app-sizer [(size)]="fontSizePx"></app-sizer>
