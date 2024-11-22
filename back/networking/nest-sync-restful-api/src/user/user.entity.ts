@@ -1,4 +1,5 @@
-export class CreateUserResponse {
+export class User {
+	id: number;
 	name: string;
 	email: string;
 	password: string;

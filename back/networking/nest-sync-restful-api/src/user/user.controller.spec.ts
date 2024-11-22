@@ -1,18 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
-import { CreateUserRequest } from './dto/create-user-request.dto';
-import { CreateUserResponse } from './dto/create-user-response.dto';
-import { GetUserResponse } from './dto/get-user-response.dto';
+import { CreateUserRequest } from './create-user-request.dto';
+import { CreateUserResponse } from './create-user-response.dto';
+import { GetUserResponse } from './get-user-response.dto';
 
 describe('UserController', () => {
-  let controller: UserController;
+  let userController: UserController;
   
   const mockUserService = {
     create: jest.fn(),
     findOne: jest.fn()
   }
-
 
   beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -25,25 +24,25 @@ describe('UserController', () => {
           ],
         }).compile();
     
-        controller = module.get<UserController>(UserController);
+        userController = module.get<UserController>(UserController);
       });
 
   it('should be defined', () => {
-    expect(controller).toBeDefined();
+    expect(userController).toBeDefined();
   });
 
 
-    describe('create usert', () => {
+    describe('create user', () => {
     it('should create a new user', async () => {
       
       const createUserRequest: CreateUserRequest = new CreateUserRequest();
       createUserRequest.email = "pepe@mail.com";
       createUserRequest.name = "Pepe";
-      createUserRequest.password = 8905;
+      createUserRequest.password = "8905";
    
       jest.spyOn(mockUserService, 'create').mockReturnValue(createUserRequest);
 
-      const createUserResponse: CreateUserResponse = await controller.create(createUserRequest);
+      const createUserResponse: CreateUserResponse = await userController.create(createUserRequest);
 
       expect(mockUserService.create).toHaveBeenCalled();
       expect(mockUserService.create).toHaveBeenCalledWith(createUserRequest)
@@ -59,12 +58,12 @@ describe('UserController', () => {
       const getUserResponseMock: GetUserResponse = new GetUserResponse();
       getUserResponseMock.email = "pepe@mail.com";
       getUserResponseMock.name = "Pepe";
-      getUserResponseMock.password = 8905;
+      getUserResponseMock.password = "8905";
       getUserResponseMock.id = 1;
       
       jest.spyOn(mockUserService, 'findOne').mockReturnValue(getUserResponseMock)
 
-      const getUserResponse: GetUserResponse = await controller.findOne(getUserResponseMock.id)
+      const getUserResponse: GetUserResponse = await userController.findOne(getUserResponseMock.id)
 
 
       expect(mockUserService.findOne).toHaveBeenCalled()
