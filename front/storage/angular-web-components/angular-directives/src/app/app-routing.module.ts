@@ -4,8 +4,10 @@ import { NgclassAttributeComponent } from './ngclass-attribute/ngclass-attribute
 import { NgstyleAttributeComponent } from './ngstyle-attribute/ngstyle-attribute.component';
 import { NgmodelAttributeComponent } from './ngmodel-attribute/ngmodel-attribute.component';
 import { IfDirectiveComponent } from './if-directive/if-directive.component';
+import { ForDirectiveComponent } from './for-directive/for-directive.component';
 
 const routes: Routes = [
+	{ path: 'for-directive', component: ForDirectiveComponent },
 	{ path: 'if-directive', component: IfDirectiveComponent },
   { path: 'ngclass-directive', component: NgclassAttributeComponent },
 	{ path: 'ngstyle-directive', component: NgstyleAttributeComponent },
