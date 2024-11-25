@@ -1,49 +1,54 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { provideRouter } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { HomeComponent } from './home/home.component';
-import { routes } from './app.routes';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AppModule } from './app.module';
 
 describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+	let component: AppComponent;
+	let fixture: ComponentFixture<AppComponent>;
 	let harness: RouterTestingHarness;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
-			providers: [provideRouter(routes)]
-    })
-    .compileComponents();
-    fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+	const appComponentRoutes: Routes = [
+		{ path: 'settings', component: SettingsComponent },
+		{ path: 'profile', component: ProfileComponent },
+		{ path: 'home', component: HomeComponent },
+		{ path: '', redirectTo: 'home', pathMatch: 'full' },
+		{ path: '**', component: PageNotFoundComponent },
+	];
+
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [AppComponent],
+			imports: [
+				RouterModule.forRoot(appComponentRoutes),
+			],
+			providers: [RouterModule]
+		}).compileComponents();
+		fixture = TestBed.createComponent(AppComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
 		harness = await RouterTestingHarness.create();
-  });
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 
-	it('navigating to each path should generate the corresponding components', async() => {
-		harness.navigateByUrl('/settings', SettingsComponent);
-		await fixture.whenStable();
+	it('navigating to each path should generate the corresponding components', async () => {
+		await harness.navigateByUrl('/settings', SettingsComponent);
 		expect(document.querySelector('app-settings')).not.toEqual(null);
-		harness.navigateByUrl('/profile', ProfileComponent);
-		await fixture.whenStable();
+		await harness.navigateByUrl('/profile', ProfileComponent);
 		expect(document.querySelector('app-profile')).not.toEqual(null);
-		harness.navigateByUrl('/home', HomeComponent);
-		await fixture.whenStable();
+		await harness.navigateByUrl('/home', HomeComponent);
 		expect(document.querySelector('app-home')).not.toEqual(null);
-		harness.navigateByUrl('/pepe', PageNotFoundComponent);
-		await fixture.whenStable();
+		await harness.navigateByUrl('/pepe', PageNotFoundComponent);
 		expect(document.querySelector('app-page-not-found')).not.toEqual(null);
-		harness.navigateByUrl('/', HomeComponent);
-		await fixture.whenStable();
+		await harness.navigateByUrl('/', HomeComponent);
 		expect(document.querySelector('app-home')).not.toEqual(null);
 	})
 });
