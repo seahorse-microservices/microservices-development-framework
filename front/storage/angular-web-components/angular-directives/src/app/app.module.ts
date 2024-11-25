@@ -8,13 +8,15 @@ import { NgclassAttributeComponent } from './ngclass-attribute/ngclass-attribute
 import { NgstyleAttributeComponent } from './ngstyle-attribute/ngstyle-attribute.component';
 import { NgmodelAttributeComponent } from './ngmodel-attribute/ngmodel-attribute.component';
 import { FormsModule } from '@angular/forms';
+import { SwitchDirectiveComponent } from './switch-directive/switch-directive.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		NgclassAttributeComponent,
 		NgstyleAttributeComponent,
-		NgmodelAttributeComponent
+		NgmodelAttributeComponent,
+  	SwitchDirectiveComponent
 	],
 	imports: [
 		AppRoutingModule,
