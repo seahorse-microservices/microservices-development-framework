@@ -3,7 +3,7 @@
   
     <div>
       <label for="category-select">Filter by Category:</label>
-      <select id="category-select" (change)="filterByCategory($event.target.value)">
+      <select id="category-select" (change)="filterByCategory($any($event.target).value)">
         <option value="">All</option>
         <option *ngFor="let category of categories" [value]="category">
           {{ category }}
