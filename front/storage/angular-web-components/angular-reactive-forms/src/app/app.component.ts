@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {  FormBuilder, FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import {  FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 
 
 class FormValidation {

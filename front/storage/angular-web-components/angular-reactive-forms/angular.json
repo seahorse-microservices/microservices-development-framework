@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-template-driven-forms": {
+    "angular-reactive-forms": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-template-driven-forms",
+            "outputPath": "dist/angular-reactive-forms",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-template-driven-forms:build:production"
+              "buildTarget": "angular-reactive-forms:build:production"
             },
             "development": {
-              "buildTarget": "angular-template-driven-forms:build:development"
+              "buildTarget": "angular-reactive-forms:build:development"
             }
           },
           "defaultConfiguration": "development"
