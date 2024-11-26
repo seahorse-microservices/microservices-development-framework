@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from './user.interface';
 import { ListService } from './list.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -9,16 +10,11 @@ import { ListService } from './list.service';
 })
 export class ListComponent {
 
-  users: User[] = [];
+	users: Observable<User[]> = of([]);
   
   constructor(protected listService : ListService) {}
 
 	loadUsers() {
-		this.listService.getUsers().subscribe(
-      {
-				next: res => this.users = res,
-       	error: () => {},
-       	complete: () => {}
-      });
+		this.users = this.listService.getUsers();
 	}
 }
