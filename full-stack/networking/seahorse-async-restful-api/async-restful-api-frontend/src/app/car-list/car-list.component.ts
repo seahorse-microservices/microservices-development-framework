@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Car } from './car.interface';
-import { ListService } from './car-list.service';
+import { CarListService } from './car-list.service';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -11,10 +11,12 @@ import { Observable, of } from 'rxjs';
 export class CarListComponent {
 
 	cars: Observable<Car[]> = of([]);
+	userTriedToLoadCars: boolean = false;
   
-  constructor(protected listService : ListService) {}
+  constructor(protected carListService : CarListService) {}
 
 	loadCars() {
-		this.cars = this.listService.getCars();
+		this.userTriedToLoadCars = true;
+		this.cars = this.carListService.getCars();
 	}
 }

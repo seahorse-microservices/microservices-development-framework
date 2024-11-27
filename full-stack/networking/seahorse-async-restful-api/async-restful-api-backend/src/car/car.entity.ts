@@ -1,6 +1,6 @@
 export class Car {
 	id: number;
-	make: string;
+	manufacturer: string;
 	model: string;
 	year: number;
 }

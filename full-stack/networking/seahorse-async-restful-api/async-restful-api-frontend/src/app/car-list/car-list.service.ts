@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ListService {
+export class CarListService {
 
-  readonly apiURL: string = "https://localhost:3000/cars";
+  readonly apiURL: string = "http://localhost:3000/cars";
   
   constructor(protected httpClient: HttpClient) { }
 
