@@ -1,9 +1,0 @@
-{
-  
-  "scripts": {
-    "start": "serve -s -l 4200"
-  },
-  "dependencies": {
-    "serve": "^14.0.1"
-  }
-}
