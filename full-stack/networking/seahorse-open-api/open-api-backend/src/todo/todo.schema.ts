@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Schema()
 export class Todo {
-    @Prop()
-    _id: string;
-		
-    @Prop()
+
+    @ApiProperty()
+		@Prop()
     name: string;
 }
 

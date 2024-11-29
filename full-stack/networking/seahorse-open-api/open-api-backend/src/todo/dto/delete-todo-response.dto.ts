@@ -1,7 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CreateTodoRequest {
-
+export class DeleteTodoResponse {
 	@ApiProperty()
-	name: string;
+	deleted: boolean = true;
 }

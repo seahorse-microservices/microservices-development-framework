@@ -7,6 +7,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
 
+	app.enableCors({
+    origin: 'http://localhost:4200',
+    methods: 'GET,POST,PATCH,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Todo App')
     .setDescription('API made to manage todos')
