@@ -9,18 +9,18 @@ import { SettingsComponent } from './settings/settings.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProfileComponent,
-    PageNotFoundComponent,
-    SettingsComponent,
-    HomeComponent
-  ],
-  imports: [
+	declarations: [
+		AppComponent,
+		ProfileComponent,
+		PageNotFoundComponent,
+		SettingsComponent,
+		HomeComponent
+	],
+	imports: [
 		AppRoutingModule,
-		BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+		BrowserModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
