@@ -10,7 +10,7 @@ export class TodoUpdateFormComponent {
 	@Input() newName: string;
 	@Output() nameChanged = new EventEmitter<string>();
 
-	constructor(private router: Router) {
+	constructor() {
 		this.newName = '';
 	}
 
