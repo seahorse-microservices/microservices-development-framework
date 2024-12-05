@@ -14,6 +14,12 @@ export class Product {
 
   @Prop()
   price: number;
+  private _id: any;
+
+  // Getter for _id
+  get id(): string {
+    return this._id.toString();
+  }
 }
 
 export const CatSchema = SchemaFactory.createForClass(Product);

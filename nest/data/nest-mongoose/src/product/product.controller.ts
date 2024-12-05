@@ -8,43 +8,30 @@ import { Product, ProductHydratedDocument } from './entities/product.entity';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
+
   @Post()
-  async create(@Body() createProductRequest: CreateProductRequest): Promise<CreateProductResponse> {
-
-
-    let product : Product = new Product()
-    createProductRequest.name = product.name
-    createProductRequest.price = product.price
-    createProductRequest.reference = product.reference
-
-    let createProductResponse: CreateProductResponse = new CreateProductResponse();
+async create(@Body() createProductRequest: CreateProductRequest): Promise<CreateProductResponse> {
+  try {
+    let product: Product = new Product();
+    product.name = createProductRequest.name;
+    product.price = createProductRequest.price;
+    product.reference = createProductRequest.reference;
 
     let productHydratedDocument: ProductHydratedDocument = await this.productService.create(product);
-    createProductResponse.id = productHydratedDocument._id;
-    createProductResponse.name  =  productHydratedDocument.name;
-    createProductResponse.price =  productHydratedDocument.price;
-    createProductResponse.reference =  productHydratedDocument.reference;
+    let productCreated: Product = productHydratedDocument;
+
+    let createProductResponse: CreateProductResponse = new CreateProductResponse();
+    createProductResponse.id = productCreated.id;
+    createProductResponse.name = productCreated.name;
+    createProductResponse.price = productCreated.price;
+    createProductResponse.reference = productCreated.reference;
 
     return createProductResponse;
+  } catch (error) {
+    // Add appropriate error response, e.g., throw a custom exception or return a meaningful message
+    throw new Error(`Failed to create product: ${error.message}`);
   }
+}
 
-  // @Get()
-  // findAll() {
-  //   return this.productService.findAll();
-  // }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.productService.findOne(+id);
-  // }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-  //   return this.productService.update(+id, updateProductDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.productService.remove(+id);
-  // }
 }
