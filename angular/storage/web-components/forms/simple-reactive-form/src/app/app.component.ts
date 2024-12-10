@@ -32,7 +32,7 @@ class FormValidation {
   template: `
   
   <div class="register-form">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label>Full Name</label>
         <input
@@ -135,7 +135,8 @@ styles: [
 ]
 })
 export class AppComponent implements OnInit {
-  form: FormGroup = new FormGroup({
+  
+  formGroup: FormGroup = new FormGroup({
     fullname: new FormControl(''),
     username: new FormControl(''),
     email: new FormControl(''),
@@ -148,7 +149,7 @@ export class AppComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group(
+    this.formGroup = this.formBuilder.group(
       {
         fullname: ['', Validators.required],
         username: ['',[Validators.required]],
@@ -162,22 +163,22 @@ export class AppComponent implements OnInit {
     );
   }
   get f(): { [key: string]: AbstractControl } {
-    return this.form.controls;
+    return this.formGroup.controls;
   }
 
   onSubmit(): void {
     this.submitted = true;
 
-    if (this.form.invalid) {
+    if (this.formGroup.invalid) {
       return;
     }
 
-    console.log(JSON.stringify(this.form.value, null, 2));
+    console.log(JSON.stringify(this.formGroup.value, null, 2));
   }
 
   onReset(): void {
     this.submitted = false;
-    this.form.reset();
+    this.formGroup.reset();
   }
 
 }
