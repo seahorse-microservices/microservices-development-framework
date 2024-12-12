@@ -1,0 +1,31 @@
+// src/styles/themes.scss
+$light-theme-colors: (
+  primary: #1976d2,
+  accent: #e91e63,
+  background: #ffffff,
+  text: #000000
+);
+
+$dark-theme-colors: (
+  primary: #90caf9,
+  accent: #f48fb1,
+  background: #121212,
+  text: #ffffff
+);
+
+@mixin theme($theme-colors) {
+  body {
+    --primary: map-get($theme-colors, primary);
+    --accent: map-get($theme-colors, accent);
+    --background: map-get($theme-colors, background);
+    --text: map-get($theme-colors, text);
+  }
+}
+
+.light-theme {
+  @include theme($light-theme-colors);
+}
+
+.dark-theme {
+  @include theme($dark-theme-colors);
+}

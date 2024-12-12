@@ -4,7 +4,7 @@ import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/fo
 import { UsernameService } from './username.service';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 export function usernameAsyncValidator(service: UsernameService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {

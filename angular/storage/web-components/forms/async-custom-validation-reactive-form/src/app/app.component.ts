@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AsyncValidationFormComponent } from './async-validation-form/async-validation-form.component';
 
 @Component({
